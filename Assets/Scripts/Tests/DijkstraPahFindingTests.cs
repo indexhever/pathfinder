@@ -15,7 +15,7 @@ namespace Tests
         {
             Connection.Node[] nodes = CreateNodes();
             Connection[] connections = CreateConnections(nodes);
-            Grapth grapth = CreateGrapth(connections);
+            Graph grapth = CreateGrapth(connections);
             DijkstraPathFinder dijkstraPathFinder = CreatePathFinder();
             Connection.Node start = nodes[0];
             Connection.Node end = nodes[6];
@@ -36,7 +36,7 @@ namespace Tests
                 connections[4], // Connection V
                 connections[6], // Connection VII
             };
-            Grapth grapth = CreateGrapth(connections);
+            Graph grapth = CreateGrapth(connections);
             DijkstraPathFinder dijkstraPathFinder = CreatePathFinder();
             Connection.Node start = nodes[0];
             Connection.Node end = nodes[6];
@@ -45,6 +45,19 @@ namespace Tests
 
             Assert.AreEqual(expectedPath.Length, foundPath.Length);
             AssertExpectedPathIsEqualToFoundPath(expectedPath, foundPath);
+        }
+
+        [Test]
+        public void NodeAreEqualToAnotherOne()
+        {
+            Connection.Node nodeA = new Connection.Node("A");
+            Connection.Node nodeB = new Connection.Node("B");
+            Connection.Node secondNode = nodeA;
+
+            Assert.IsTrue(nodeA.Equals(secondNode));
+            Assert.IsFalse(nodeA.Equals(nodeB));
+            Assert.AreEqual(nodeA.Name, secondNode.Name);
+            Assert.AreEqual(nodeA.Name, "A");
         }
 
         private static void AssertExpectedPathIsEqualToFoundPath(Connection[] expectedPath, Connection[] foundPath)
@@ -111,9 +124,9 @@ namespace Tests
             };
         }
 
-        private Grapth CreateGrapth(Connection[] connections)
+        private Graph CreateGrapth(Connection[] connections)
         {
-            return new Grapth(connections);
+            return new Graph(connections);
         }
 
         private Connection.Node CreateNode(string name)

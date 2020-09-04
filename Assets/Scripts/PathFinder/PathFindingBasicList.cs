@@ -48,5 +48,14 @@ namespace PathFinder
         {
             recordList.Add(newItem);
         }
+
+        public bool Contains(Connection.Node searchedItem)
+        {
+            return recordList
+                .Exists(
+                    (currentConnection) => 
+                        currentConnection.Node.Equals(searchedItem)
+                );
+        }
     }
 }

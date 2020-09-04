@@ -37,6 +37,23 @@ namespace Tests
             Assert.AreEqual(expectedSmallestElement, retrievedElement);
         }
 
+        [Test]
+        public void ContainsGivenNode()
+        {
+            PathFindingList pathFindingList = CreatePathFindingList();
+            NodeRecord searchedItem = CreateItem();
+
+            bool hasSearchedNode = pathFindingList.Contains(searchedItem.Node);
+
+            Assert.IsFalse(hasSearchedNode);
+
+            pathFindingList.Add(searchedItem);
+
+            hasSearchedNode = pathFindingList.Contains(searchedItem.Node);
+
+            Assert.IsTrue(hasSearchedNode);
+        }
+
         private NodeRecord CreateItem(int cost = 0)
         {
             return new NodeRecord(new Connection.Node(), null, cost);

@@ -9,5 +9,6 @@ namespace PathFinder
         NodeRecord SmallestElement { get; }
 
         void Add(NodeRecord newItem);
+        bool Contains(Connection.Node searchedItem);
     }
 }

@@ -14,6 +14,7 @@ namespace PathFinder
             }
 
             public string Name { get; }
+
         }
 
         public Connection(float cost, Node fromNode, Node toNode)
